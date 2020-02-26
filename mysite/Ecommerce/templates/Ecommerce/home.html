@@ -1,0 +1,262 @@
+{% extends 'Ecommerce/base.html' %}
+{% load cart_template_tags %}
+
+{% block content %}
+
+<body class="homepage-v2 hidden-sn white-skin animated">
+
+<!-- Mega menu -->
+<div class="container mt-2 pt-2">
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color mt-5">
+
+        <!-- Navbar brand -->
+        <a class="font-weight-bold white-text mr-4" href="#">Items</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                aria-controls="navbarSupportedContent1"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    </nav>
+    <!--/.Navbar-->
+
+</div>
+<!-- Mega menu -->
+
+<!-- /.Main Container -->
+<div class="container">
+
+    <!-- Grid row -->
+    <div class="row pt-4">
+
+        <!-- Content -->
+        <div class="col-lg-12">
+
+            <!-- Section: Intro -->
+
+
+            <!--Section: Products-->
+            <section>
+
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-12">
+
+                        <!-- Grid row -->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            {% for item in object_list %}
+                            <div class="col-lg-4 col-md-12 mb-4">
+
+                                <!--Card-->
+                                <div class="card card-ecommerce" style="width:20rem; height:450px">
+
+                                    <!--Card image-->
+                                    <div class="view overlay">
+                                        <img src="{{item.image.url}}" height="300px" width="350px" class="img-fluid">
+                                        <a href="{{ item.get_absolute_url }}">
+                                            <div class="mask rgba-white-slight"></div>
+                                        </a>
+                                    </div>
+                                    <!--Card image-->
+
+                                    <!--Card content-->
+                                    <div class="card-body">
+                                        <!--Category & Title-->
+
+                                        <h5 class="card-title mb-1"><strong><a href="{{item.get_absolute_url}}"
+                                                                               class="dark-grey-text">{{item.title}}</a></strong>
+                                        </h5>
+                                        <span class="badge badge-pill {{item.get_label_display}}-color mb-2">New</span>
+                                        <!-- Rating -->
+                                        <ul class="rating">
+                                            <li><i class="fas fa-star blue-text"></i></li>
+                                            <li><i class="fas fa-star blue-text"></i></li>
+                                            <li><i class="fas fa-star blue-text"></i></li>
+                                            <li><i class="fas fa-star blue-text"></i></li>
+                                            <li><i class="fas fa-star blue-text"></i></li>
+                                        </ul>
+
+                                        <!--Card footer-->
+                                        <div class="card-footer pb-0">
+                                            <div class="row mb-0">
+                                                    <span class="float-left"><strong>GH
+                                                            {% if item.discount_price %}
+                                                            {{ item.discount_price }}
+                                                            {% else %}
+                                                            {{ item.price }}
+                                                            {% endif %}</strong></span>
+                                                <span class="float-right">
+                                                        <a class="" data-toggle="tooltip" data-placement="top"
+                                                           title="Add to Cart"><i class="fas fa-shopping-cart ml-3"></i></a>
+                                                        </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--Card content-->
+
+                                </div>
+                                <!--Card-->
+
+
+                            </div>
+                            {% endfor %}
+                            <!--Grid column-->
+                            {% if is_paginated %}
+                              <nav class="d-flex justify-content-center wow fadeIn">
+                                <ul class="pagination pg-blue">
+
+                                  {% if page_obj.has_previous %}
+                                  <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                      <span aria-hidden="true">&laquo;</span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                  </li>
+                                  {% endif %}
+
+                                  <li class="page-item active">
+                                    <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+                                      <span class="sr-only">(current)</span>
+                                    </a>
+                                  </li>
+
+                                  {% if page_obj.has_next %}
+                                  <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                  </li>
+                                  {% endif %}
+                                </ul>
+                              </nav>
+                            {% endif %}
+
+
+                        </div>
+                        <!--Grid row-->
+
+
+                    </div>
+
+                </div>
+                <!--Grid row-->
+
+            </section>
+            <!--Section: Products-->
+
+            <!--Section: Advertising-->
+            <section>
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-12">
+                        <!--Image -->
+                        <div class="view  z-depth-1">
+                            <img src="https://www.graphic.com.gh/images/2016/OCTOBER/oct3/melcommadeinghana.png" class="img-fluid"
+                                 alt="sample image">
+                            <div class="mask rgba-stylish-slight">
+                                <div class="dark-grey-text text-right pt-lg-5 pt-md-1 mr-5 pr-md-4 pr-0">
+                                    <div>
+                                        <a>
+                                            <span class="badge badge-primary">SALE</span>
+                                        </a>
+                                        <h3 class="card-title font-weight-bold pt-md-3 pt-1">
+                                            <strong>This is the time to purchase all your Ghanaian product
+                                            </strong>
+                                        </h3>
+                                        <p class="pb-lg-3 pb-md-1 clearfix d-none d-md-block">Ghanaian products the future is bright. </p>
+                                        <a class="btn mr-0 btn-primary btn-rounded clearfix d-none d-md-inline-block">Read
+                                            more</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Image -->
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!-- Grid row -->
+                <div class="row mt-4 pt-1">
+
+                    <!--Grid column-->
+                    <div class="col-lg-8 col-md-12 mb-3 mb-md-4 pb-lg-2">
+                        <!--Image -->
+                        <div class="view zoom z-depth-1">
+                            <img src="https://static.wixstatic.com/media/11c636_c4cbda3b2fe94db1be3266a091d44673~mv2.png/v1/fill/w_630,h_330,al_c,usm_0.66_1.00_0.01/11c636_c4cbda3b2fe94db1be3266a091d44673~mv2.png" class="img-fluid"
+                                 alt="sample image">
+                            <div class="mask rgba-white-light">
+                                <div class="dark-grey-text d-flex align-items-center pt-4 ml-lg-3 pl-lg-3 pl-md-5">
+                                    <div>
+                                        <a><span class="badge badge-danger"></span></a>
+                                        <h2 class="card-title font-weight-bold pt-2"><strong></strong>
+                                        </h2>
+                                        <p class="hidden show-ud-up"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Image -->
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-12 mb-4">
+                        <!--Image -->
+                        <div class="view zoom z-depth-1 photo">
+                            <img src="https://brandongaille.com/wp-content/uploads/2018/03/Ghana-Cement-Industry-Statistics.png" class="img-fluid"
+                                 alt="sample image">
+                            <div class="mask rgba-stylish-strong">
+                                <div class="white-text center-elem text-center w-75">
+                                    <div class="">
+                                        <a><span class="badge badge-info"></span></a>
+                                        <h2 class="card-title font-weight-bold pt-2"><strong>Local Products</strong>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Image -->
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+            </section>
+            <!--Section: Advertising-->
+
+
+            <!--Section: product list-->
+
+
+        </div>
+        <!-- /.Content -->
+
+    </div>
+    <!-- Grid row -->
+
+</div>
+<!-- /.Main Container -->
+
+
+</body>
+{% endblock content %}
+
+
